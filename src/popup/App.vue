@@ -56,7 +56,7 @@
     <div class="popup-footer">
       <a href="#" @click.prevent="openSettings">设置</a>
       <span class="divider">·</span>
-      <a href="https://github.com/ai-study-assistant" target="_blank">GitHub</a>
+      <a href="https://github.com/jijiutong/answer-free-ai-assistant" target="_blank">GitHub</a>
     </div>
   </div>
 </template>
