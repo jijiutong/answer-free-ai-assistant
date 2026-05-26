@@ -7,6 +7,56 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Manifest V3](https://img.shields.io/badge/manifest-v3-green.svg)
 
+## Screenshots
+
+### Capture Page
+![](screenshots/capture.png)
+
+### History Records
+![](screenshots/history.png)
+
+### Export Records
+![](screenshots/export.png)
+
+### Settings
+![](screenshots/settings.png)
+
+## Installation Guide
+
+### Step 1: Download the Extension
+Visit the [releases page](https://github.com/jijiutong/answer-free-ai-assistant/releases) and download the latest `dist.zip`, or clone this repository:
+
+```bash
+git clone https://github.com/jijiutong/answer-free-ai-assistant.git
+cd answer-free-ai-assistant
+npm install
+npm run build
+```
+
+### Step 2: Open Chrome Extensions Page
+1. Open Chrome (or Edge) browser
+2. Type `chrome://extensions/` in the address bar and press Enter
+   - Edge users: type `edge://extensions/`
+
+### Step 3: Enable Developer Mode
+1. In the top-right corner of the extensions page, find the **Developer mode** toggle
+2. Click to turn it **ON**
+
+### Step 4: Load the Extension
+1. Click the **Load unpacked** button that appeared
+2. Navigate to and select the `dist/` folder from this project
+3. The extension icon (purple book with sparkle) will appear in your toolbar
+
+### Step 5: Pin the Extension
+1. Click the puzzle piece icon (🧩) in your Chrome toolbar
+2. Find **答题免费 AI 助手** and click the pin icon (📌)
+3. The extension is now always accessible from your toolbar!
+
+### Step 6: Configure Your AI Model
+1. Click the extension icon → **Settings** tab
+2. Click **+ Add** to add your AI model
+3. Enter your API credentials (see [Configuration](#configuration) below)
+
 ## Features
 
 ### Core Workflow
@@ -56,13 +106,6 @@
 - **Export Scope** — All records, selected records, or current session
 - **Timestamped Filenames** — Auto-generated filenames with date/time
 
-### UI/UX
-- **Side Panel Interface** — 4-tab navigation: Capture, History, Export, Settings
-- **Popup Quick Actions** — Capture button, recent history preview
-- **Loading States** — Animated loading overlay with progress messages
-- **Error Handling** — Friendly error messages with dismissible alerts
-- **JSON Parse Fallback** — Multi-strategy JSON extraction (code blocks, tags, brace matching)
-
 ## Tech Stack
 
 - **Vue 3** — Reactive UI framework
@@ -74,40 +117,27 @@
 ## Project Structure
 
 ```
-ai-study-assistant/
-├── manifest.json                          # Extension manifest (MV3)
-├── package.json                           # Dependencies & scripts
-├── vite.config.mjs                        # Vite multi-entry config
-── public/
-│   └── icons/                             # Extension icons (16/48/128)
+answer-free-ai-assistant/
+├── manifest.json              # Extension manifest (MV3)
+├── package.json               # Dependencies & scripts
+├── vite.config.mjs            # Vite multi-entry config
+── screenshots/               # UI screenshots for README
+├── public/
+│   └── icons/                 # Extension icons (16/48/128)
 ├── src/
-│   ├── background.js                      # Service Worker (side panel, messaging)
+│   ├── background.js          # Service Worker (side panel, messaging)
 │   ├── content/
-│   │   └── content.js                     # Content script (capture, restriction removal)
-│   ├── popup/
-│   │   ├── index.html / main.js / App.vue
-│   │   └── components/                    # Popup components
-│   ├── sidepanel/
-│   │   ├── index.html / main.js / App.vue
-│   │   ├── views/
-│   │   │   ├── CaptureView.vue            # Capture + AI parsing
-│   │   │   ├── HistoryView.vue            # Record history
-│   │   │   ├── ExportView.vue             # Export records
-│   │   │   └── SettingsView.vue           # Settings center
-│   │   └── components/
-│   │       ├── ModelSelector.vue          # Model picker
-│   │       ├── ResultViewer.vue           # Structured results
-│   │       └── LoadingOverlay.vue         # Loading animation
-│   ├── shared/
-│   │   ├── api.js                         # AI API client (OpenAI compatible)
-│   │   ├── storage.js                     # chrome.storage wrapper + CRUD
-│   │   └── utils.js                       # Chunking, parsing, export formatters
-│   └── styles/
-│       └── global.css                     # Design tokens, theme variables
-└── dist/                                  # Build output (load this into Chrome)
+│   │   └── content.js         # Content script (capture, restriction removal)
+│   ├── popup/                 # Browser action popup
+│   ├── sidepanel/             # Side panel views
+│   │   ├── views/             # Capture, History, Export, Settings
+│   │   └── components/        # Reusable components
+│   ├── shared/                # Shared modules (api, storage, utils)
+│   └── styles/                # Global CSS design tokens
+└── dist/                      # Build output (load this into Chrome)
 ```
 
-## Getting Started
+## Development
 
 ### Prerequisites
 - Node.js 18+
@@ -118,26 +148,19 @@ ai-study-assistant/
 npm install
 ```
 
-### Development
+### Development Mode
 ```bash
 npm run dev        # Watch mode, auto-rebuild on changes
 ```
 
-### Build
+### Production Build
 ```bash
 npm run build      # Production build → dist/
 ```
 
-### Load in Chrome
-1. Open `chrome://extensions/`
-2. Enable **Developer mode** (top-right toggle)
-3. Click **Load unpacked**
-4. Select the `dist/` directory
-5. Pin the extension and enjoy!
-
 ### Update After Changes
-- Run `npm run build` to rebuild
-- Go to `chrome://extensions/` and click the **refresh** icon on the extension card
+1. Run `npm run build` to rebuild
+2. Go to `chrome://extensions/` and click the **refresh** icon on the extension card
 
 ## Configuration
 

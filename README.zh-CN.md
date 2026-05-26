@@ -7,6 +7,56 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Manifest V3](https://img.shields.io/badge/manifest-v3-green.svg)
 
+## 截图展示
+
+### 抓题页面
+![](screenshots/capture.png)
+
+### 历史记录
+![](screenshots/history.png)
+
+### 导出记录
+![](screenshots/export.png)
+
+### 设置中心
+![](screenshots/settings.png)
+
+## 安装指南
+
+### 第一步：获取扩展文件
+访问 [releases 页面](https://github.com/jijiutong/answer-free-ai-assistant/releases) 下载最新的 `dist.zip`，或者克隆仓库后自行构建：
+
+```bash
+git clone https://github.com/jijiutong/answer-free-ai-assistant.git
+cd answer-free-ai-assistant
+npm install
+npm run build
+```
+
+### 第二步：打开浏览器扩展管理页面
+1. 打开 Chrome（或 Edge）浏览器
+2. 在地址栏输入 `chrome://extensions/` 并回车
+   - Edge 用户：输入 `edge://extensions/`
+
+### 第三步：开启开发者模式
+1. 在扩展程序页面的右上角找到 **开发者模式** 开关
+2. 点击将其**开启**（变为蓝色）
+
+### 第四步：加载扩展程序
+1. 点击出现的 **加载已解压的扩展程序** 按钮
+2. 找到本项目中的 `dist/` 文件夹并选中
+3. 加载成功后，工具栏会出现紫色的「书本+闪光」图标
+
+### 第五步：固定到工具栏（推荐）
+1. 点击工具栏上的拼图图标（🧩）
+2. 找到 **答题免费 AI 助手**，点击图钉图标（）固定
+3. 固定后每次打开浏览器都能快速访问！
+
+### 第六步：配置 AI 模型
+1. 点击扩展图标 → 切换到**设置**标签页
+2. 点击 **+ 新增** 添加你的 AI 模型
+3. 填写 API 信息（详见下方 [配置说明](#配置说明)）
+
 ## 功能特性
 
 ### 核心流程
@@ -56,13 +106,6 @@
 - **灵活导出范围** — 全部记录、已选记录、当前记录
 - **自动时间戳文件名** — 导出文件名包含日期时间
 
-### 界面体验
-- **侧边栏界面** — 4 个标签页：抓题、历史、导出、设置
-- **快捷弹窗** — 抓题按钮、最近记录预览
-- **加载动画** — 加载遮罩带进度提示
-- **错误提示** — 友好的错误信息，可关闭
-- **JSON 解析容错** — 多策略 JSON 提取（代码块、标签、花括号匹配）
-
 ## 技术栈
 
 - **Vue 3** — 响应式 UI 框架
@@ -74,40 +117,27 @@
 ## 项目结构
 
 ```
-ai-study-assistant/
-├── manifest.json                          # 扩展清单 (MV3)
-── package.json                           # 依赖 & 构建脚本
-├── vite.config.mjs                        # Vite 多入口配置
+answer-free-ai-assistant/
+├── manifest.json              # 扩展清单 (MV3)
+── package.json               # 依赖 & 构建脚本
+├── vite.config.mjs            # Vite 多入口配置
+├── screenshots/               # README 用的截图
 ├── public/
-│   └── icons/                             # 插件图标 (16/48/128)
+│   └── icons/                 # 插件图标 (16/48/128)
 ├── src/
-│   ├── background.js                      # Service Worker（侧面板注册、消息转发）
+│   ├── background.js          # Service Worker（侧面板注册、消息转发）
 │   ├── content/
-│   │   └── content.js                     # 内容脚本（抓题、解除限制）
-│   ├── popup/
-│   │   ├── index.html / main.js / App.vue
-│   │   └── components/                    # Popup 组件
-│   ├── sidepanel/
-│   │   ├── index.html / main.js / App.vue
-│   │   ├── views/
-│   │   │   ├── CaptureView.vue            # 抓题 + AI 解析
-│   │   │   ├── HistoryView.vue            # 历史记录
-│   │   │   ├── ExportView.vue             # 导出记录
-│   │   │   ── SettingsView.vue           # 设置中心
-│   │   └── components/
-│   │       ├── ModelSelector.vue          # 模型选择器
-│   │       ├── ResultViewer.vue           # 结构化结果展示
-│   │       └── LoadingOverlay.vue         # 加载动画
-│   ├── shared/
-│   │   ├── api.js                         # AI API 客户端（OpenAI 兼容格式）
-│   │   ├── storage.js                     # chrome.storage 封装 + CRUD
-│   │   └── utils.js                       # 分块、解析、导出格式化
-│   ── styles/
-│       └── global.css                     # 设计 Token、主题变量
-── dist/                                  # 构建产物（直接加载到 Chrome）
+│   │   └── content.js         # 内容脚本（抓题、解除限制）
+│   ├── popup/                 # 浏览器弹窗
+│   ├── sidepanel/             # 侧面板
+│   │   ├── views/             # 抓题、历史、导出、设置
+│   │   ── components/        # 可复用组件
+│   ├── shared/                # 共享模块 (api, storage, utils)
+│   └── styles/                # 全局样式 & 设计 Token
+── dist/                      # 构建产物（直接加载到 Chrome）
 ```
 
-## 快速开始
+## 开发
 
 ### 前置条件
 - Node.js 18+
@@ -128,16 +158,9 @@ npm run dev        # 监听模式，文件变更后自动重新构建
 npm run build      # 构建到 dist/ 目录
 ```
 
-### 加载到 Chrome
-1. 打开 `chrome://extensions/`
-2. 开启右上角的 **开发者模式**
-3. 点击 **加载已解压的扩展程序**
-4. 选择 `dist/` 目录
-5. 固定插件即可使用！
-
-### 更新代码后
-- 运行 `npm run build` 重新构建
-- 在 `chrome://extensions/` 中找到插件，点击 **刷新** 图标
+### 代码更新后
+1. 运行 `npm run build` 重新构建
+2. 在 `chrome://extensions/` 中找到插件，点击 **刷新** 图标
 
 ## 配置说明
 
