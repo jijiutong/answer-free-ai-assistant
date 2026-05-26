@@ -170,16 +170,16 @@ All data (model configs, history, settings) is stored locally in `chrome.storage
 ## Screenshots
 
 ### Capture Page
-![](screenshots/settings.png)
-
-### History Records
-![](screenshots/export.png)
-
-### Export Records
 ![](screenshots/capture.png)
 
-### Settings
+### History Records
 ![](screenshots/history.png)
+
+### Export Records
+![](screenshots/export.png)
+
+### Settings
+![](screenshots/settings.png)
 
 ## License
 

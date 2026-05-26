@@ -170,16 +170,16 @@ npm run build      # 构建到 dist/ 目录
 ## 截图展示
 
 ### 抓题页面
-![](screenshots/settings.png)
+![](screenshots/scapture.png)
 
 ### 历史记录
-![](screenshots/export.png)
+![](screenshots/history.png)
 
 ### 导出记录
-![](screenshots/capture.png)
+![](screenshots/export.png)
 
 ### 设置中心
-![](screenshots/history.png)
+![](screenshots/settings.png)
 
 ## 许可证
 
