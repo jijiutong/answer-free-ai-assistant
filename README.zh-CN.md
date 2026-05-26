@@ -7,20 +7,6 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Manifest V3](https://img.shields.io/badge/manifest-v3-green.svg)
 
-## 截图展示
-
-### 抓题页面
-![](screenshots/capture.png)
-
-### 历史记录
-![](screenshots/history.png)
-
-### 导出记录
-![](screenshots/export.png)
-
-### 设置中心
-![](screenshots/settings.png)
-
 ## 安装指南
 
 ### 第一步：获取扩展文件
@@ -49,7 +35,7 @@ npm run build
 
 ### 第五步：固定到工具栏（推荐）
 1. 点击工具栏上的拼图图标（🧩）
-2. 找到 **答题免费 AI 助手**，点击图钉图标（）固定
+2. 找到 **答题免费 AI 助手**，点击图钉图标（📌）固定
 3. 固定后每次打开浏览器都能快速访问！
 
 ### 第六步：配置 AI 模型
@@ -124,17 +110,17 @@ answer-free-ai-assistant/
 ├── screenshots/               # README 用的截图
 ├── public/
 │   └── icons/                 # 插件图标 (16/48/128)
-├── src/
+── src/
 │   ├── background.js          # Service Worker（侧面板注册、消息转发）
 │   ├── content/
 │   │   └── content.js         # 内容脚本（抓题、解除限制）
 │   ├── popup/                 # 浏览器弹窗
 │   ├── sidepanel/             # 侧面板
 │   │   ├── views/             # 抓题、历史、导出、设置
-│   │   ── components/        # 可复用组件
+│   │   └── components/        # 可复用组件
 │   ├── shared/                # 共享模块 (api, storage, utils)
 │   └── styles/                # 全局样式 & 设计 Token
-── dist/                      # 构建产物（直接加载到 Chrome）
+└── dist/                      # 构建产物（直接加载到 Chrome）
 ```
 
 ## 开发
@@ -180,6 +166,20 @@ npm run build      # 构建到 dist/ 目录
 ## 数据隐私
 
 所有数据（模型配置、历史记录、设置项）均存储在浏览器本地 `chrome.storage.local` 中。除了你主动配置的 AI API 请求外，不会向任何服务器发送数据。
+
+## 截图展示
+
+### 抓题页面
+![](screenshots/settings.png)
+
+### 历史记录
+![](screenshots/export.png)
+
+### 导出记录
+![](screenshots/capture.png)
+
+### 设置中心
+![](screenshots/history.png)
 
 ## 许可证
 

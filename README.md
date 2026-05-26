@@ -7,20 +7,6 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Manifest V3](https://img.shields.io/badge/manifest-v3-green.svg)
 
-## Screenshots
-
-### Capture Page
-![](screenshots/capture.png)
-
-### History Records
-![](screenshots/history.png)
-
-### Export Records
-![](screenshots/export.png)
-
-### Settings
-![](screenshots/settings.png)
-
 ## Installation Guide
 
 ### Step 1: Download the Extension
@@ -120,10 +106,10 @@ npm run build
 answer-free-ai-assistant/
 ├── manifest.json              # Extension manifest (MV3)
 ├── package.json               # Dependencies & scripts
-├── vite.config.mjs            # Vite multi-entry config
-── screenshots/               # UI screenshots for README
+── vite.config.mjs            # Vite multi-entry config
+├── screenshots/               # UI screenshots for README
 ├── public/
-│   └── icons/                 # Extension icons (16/48/128)
+│   ── icons/                 # Extension icons (16/48/128)
 ├── src/
 │   ├── background.js          # Service Worker (side panel, messaging)
 │   ├── content/
@@ -180,6 +166,20 @@ npm run build      # Production build → dist/
 ## Data Privacy
 
 All data (model configs, history, settings) is stored locally in `chrome.storage.local`. Nothing is sent to any server except the API requests you configure.
+
+## Screenshots
+
+### Capture Page
+![](screenshots/settings.png)
+
+### History Records
+![](screenshots/export.png)
+
+### Export Records
+![](screenshots/capture.png)
+
+### Settings
+![](screenshots/history.png)
 
 ## License
 
