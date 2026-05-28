@@ -1,6 +1,6 @@
-# Answer Free AI Assistant (答题免费 AI 助手)
+# AI Study Assistant
 
-> A Chrome/Edge browser extension for AI-assisted learning — capture questions from any webpage, parse them with AI, review answers, and export for study.
+> A Chrome/Edge browser extension for AI-assisted learning: extract webpage study content, analyze it with AI, review explanations, and export notes.
 
 [简体中文](README.zh-CN.md) · [English](README.md)
 
@@ -35,7 +35,7 @@ npm run build
 
 ### Step 5: Pin the Extension
 1. Click the puzzle piece icon (🧩) in your Chrome toolbar
-2. Find **答题免费 AI 助手** and click the pin icon (📌)
+2. Find **AI Study Assistant** and click the pin icon (📌)
 3. The extension is now always accessible from your toolbar!
 
 ### Step 6: Configure Your AI Model
@@ -46,9 +46,9 @@ npm run build
 ## Features
 
 ### Core Workflow
-- **Webpage Capture** — One-click extraction of question content from any webpage, with smart DOM filtering to remove navigation, buttons, and noise
-- **Remove Restrictions** — Bypass `user-select: none`, copy-disabled, and right-click-blocked pages
-- **AI Parsing** — Send captured content to any OpenAI-compatible API (DeepSeek, OpenAI, LM Studio, etc.) for structured answer parsing
+- **Content Extraction** — One-click extraction of study content from webpages, with smart DOM filtering to remove navigation, buttons, and noise
+- **Text Selection Assist** — Improves webpage text selection and copying only when the user enables it
+- **AI Parsing** — Send extracted content to a user-configured OpenAI-compatible API (DeepSeek, OpenAI, LM Studio, etc.) for structured analysis
 - **Result Viewer** — Beautifully rendered structured results: question type, content, options, answer, code (multi-language), and detailed explanation
 
 ### Question Types Supported
@@ -83,7 +83,7 @@ npm run build
 ### Customization
 - **Prompt Template** — Editable system prompt with restore-to-default
 - **Dark/Light Theme** — Full theme support with smooth transitions
-- **Feature Toggles** — Restriction removal can be enabled/disabled
+- **Feature Toggles** — Text selection assist can be enabled/disabled
 
 ### History & Export
 - **Persistent History** — All parsing sessions saved in `chrome.storage.local`

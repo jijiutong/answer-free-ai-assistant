@@ -3,9 +3,6 @@
     <div class="result-header">
       <span>解析结果 ({{ questions.length }} 题)</span>
       <div class="result-actions">
-        <button class="btn btn-sm btn-secondary" @click="autoSelect" :disabled="!canAutoSelect">
-          自动选中 ({{ autoSelected }})
-        </button>
         <button class="btn btn-sm btn-secondary" @click="copyAll">复制全部</button>
       </div>
     </div>
@@ -85,8 +82,6 @@ const props = defineProps({
 
 const questions = computed(() => props.result?.questions || []);
 const codeLangs = ref({});
-const autoSelected = ref(0);
-const canAutoSelect = computed(() => questions.value.some(q => q.answer && q.answer !== '未知'));
 
 function parseExplanation(text) {
   const parts = [];
@@ -158,20 +153,6 @@ function copyCode(q, index) {
 function getCode(q, index) {
   const lang = getSelectedLang(q, index);
   return q.code?.[lang] || '';
-}
-
-async function autoSelect() {
-  try {
-    const result = await chrome.runtime.sendMessage({
-      action: 'autoSelect',
-      questions: questions.value,
-    });
-    if (result?.success) {
-      autoSelected.value = result.count || 0;
-    }
-  } catch {
-    alert('无法连接页面，请确保在当前页面打开');
-  }
 }
 
 function copyAll() {

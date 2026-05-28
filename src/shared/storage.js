@@ -3,7 +3,7 @@
 const DEFAULT_SETTINGS = {
   theme: 'light',
   promptTemplate: '',
-  restrictionsRemoval: true,
+  restrictionsRemoval: false,
   activeModelId: '',
   codeLanguages: ['java', 'python', 'cpp'],
   explanation: {

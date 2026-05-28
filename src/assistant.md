@@ -9,7 +9,7 @@
   ├── public/icons/             # 占位图标
   └── src/
       ├── background.js         # Service Worker (侧面板注册)
-      ├── content/content.js    # 内容脚本 (抓题 + 解除限制)
+      ├── content/content.js    # 内容脚本 (内容提取 + 文本选择辅助)
       ├── popup/                # Popup 面板
       ├── sidepanel/            # Side Panel 主界面
       │   ├── views/            #   抓题/历史/导出/设置 四页签
@@ -17,8 +17,8 @@
       └── shared/               # 共享层 (API/存储/工具函数)
 
   V1.0 已实现功能：
-  1. 网页智能抓题（过滤广告/导航噪音）
-  2. 一键解除页面限制（user-select、右键、复制）
+  1. 网页学习内容提取（过滤广告/导航噪音）
+  2. 文本选择辅助（user-select、右键、复制）
   3. 多模型配置（DeepSeek/OpenAI/本地模型）
   4. AI 结构化解析（题干/题型/选项/答案/解析）
   5. 长文本智能分块

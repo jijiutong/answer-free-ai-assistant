@@ -4,7 +4,7 @@
       <div class="popup-brand">
         <span class="brand-icon">📖</span>
         <div>
-          <h1>答题免费 AI 助手</h1>
+          <h1>AI 学习助手</h1>
           <span class="version">v1.0</span>
         </div>
       </div>
@@ -20,7 +20,7 @@
         {{ loading ? '抓取中...' : '抓取当前页面' }}
       </button>
       <button class="btn btn-secondary btn-block" @click="removeRestrictions" :disabled="loading">
-        解除页面限制
+        文本选择辅助
       </button>
       <button class="btn btn-secondary btn-block" @click="openSidePanel">
         打开完整面板
@@ -97,7 +97,7 @@ async function captureAndOpen() {
 async function removeRestrictions() {
   try {
     await chrome.runtime.sendMessage({ action: 'triggerRemoveRestrictions' });
-    showToast('已解除页面限制', 'success');
+    showToast('已启用文本选择辅助', 'success');
   } catch {
     showToast('操作失败', 'error');
   }

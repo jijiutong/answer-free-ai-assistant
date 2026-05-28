@@ -6,7 +6,7 @@
         抓取当前页面
       </button>
       <button class="btn btn-secondary" @click="removeRestrictions" :disabled="loading">
-        解除限制
+        文本选择辅助
       </button>
     </div>
 

@@ -76,7 +76,7 @@
     <section class="settings-section card">
       <h3 class="section-title">功能开关</h3>
       <div class="setting-row">
-        <span class="setting-label">自动解除网页限制</span>
+        <span class="setting-label">自动启用文本选择辅助</span>
         <label class="switch">
           <input type="checkbox" v-model="settings.restrictionsRemoval" @change="saveSetting('restrictionsRemoval')">
           <span class="slider"></span>
@@ -236,13 +236,14 @@ import {
   getSettings, updateSettings, getPrompt, savePrompt,
   clear as clearStorage, DEFAULT_PROMPT,
 } from '@/shared/storage';
+import { ensureApiHostPermission } from '@/shared/api';
 
 const emit = defineEmits(['theme-change']);
 
 const models = ref([]);
 const settings = reactive({
   theme: 'light',
-  restrictionsRemoval: true,
+  restrictionsRemoval: false,
   codeLanguages: ['java', 'python', 'cpp'],
   explanation: {
     enabled: true,
@@ -345,6 +346,13 @@ function editModel(model) {
 async function saveModelForm() {
   if (!form.name || !form.apiUrl) return;
 
+  try {
+    await ensureApiHostPermission(form.apiUrl);
+  } catch (err) {
+    alert(err.message || 'API 域名授权失败');
+    return;
+  }
+
   if (editingModel.value) {
     await updateModel(editingModel.value.id, {
       name: form.name,
@@ -394,6 +402,7 @@ async function doJsonImport() {
       const modelName = item.modelName || item.model_name || item.modelName || name;
       const maxTokens = item.maxTokens || item.max_tokens || item.maxTokens || 100000;
       if (!name || !apiUrl) continue;
+      await ensureApiHostPermission(apiUrl);
       await addModel({
         name,
         apiUrl,
@@ -439,7 +448,7 @@ async function resetAll() {
   await clearStorage();
   models.value = [];
   settings.theme = 'light';
-  settings.restrictionsRemoval = true;
+  settings.restrictionsRemoval = false;
   settings.codeLanguages = ['java', 'python', 'cpp'];
   settings.explanation = {
     enabled: true,
@@ -456,7 +465,7 @@ onMounted(async () => {
   models.value = await getModels();
   const s = await getSettings();
   settings.theme = s.theme || 'light';
-  settings.restrictionsRemoval = s.restrictionsRemoval !== false;
+  settings.restrictionsRemoval = s.restrictionsRemoval === true;
   settings.codeLanguages = s.codeLanguages?.length ? s.codeLanguages : ['java', 'python', 'cpp'];
   settings.explanation = s.explanation || {
     enabled: true,

@@ -1,5 +1,12 @@
 // Background service worker
 
+async function ensureContentScript(tabId) {
+  await chrome.scripting.executeScript({
+    target: { tabId },
+    files: ['content.js'],
+  });
+}
+
 // Register side panel and set behavior
 chrome.runtime.onInstalled.addListener(() => {
   if (chrome.sidePanel) {
@@ -41,14 +48,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   // Trigger content script extraction from sidepanel/popup
   if (message.action === 'triggerExtract') {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
       if (!tabs[0]?.id) {
         sendResponse({ success: false, message: '无活动标签页' });
         return;
       }
-      const url = tabs[0].url || '';
-      if (url.startsWith('chrome://') || url.startsWith('chrome-extension://') || url.startsWith('edge://')) {
-        sendResponse({ success: false, message: '当前页面不支持抓题，请在普通网页中使用' });
+      try {
+        await ensureContentScript(tabs[0].id);
+      } catch {
+        sendResponse({ success: false, message: '当前页面不支持内容提取，请在普通网页中使用' });
         return;
       }
       chrome.tabs.sendMessage(tabs[0].id, { action: 'extract' }, (response) => {
@@ -64,13 +72,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   // Trigger restriction removal
   if (message.action === 'triggerRemoveRestrictions') {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
       if (!tabs[0]?.id) {
         sendResponse({ success: false });
         return;
       }
-      const url = tabs[0].url || '';
-      if (url.startsWith('chrome://') || url.startsWith('chrome-extension://') || url.startsWith('edge://')) {
+      try {
+        await ensureContentScript(tabs[0].id);
+      } catch {
         sendResponse({ success: false });
         return;
       }

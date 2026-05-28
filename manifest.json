@@ -1,33 +1,33 @@
 {
   "manifest_version": 3,
-  "name": "答题免费 AI 助手",
+  "name": "AI 学习助手",
   "version": "1.0.0",
-  "description": "网页智能抓题、AI一键解析、解除网页限制、学习内容导出复盘",
+  "description": "网页学习内容提取、AI 辅助解析与学习记录导出复盘",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
   "permissions": [
-    "storage",
     "activeTab",
-    "sidePanel",
-    "scripting"
+    "scripting",
+    "storage",
+    "sidePanel"
   ],
   "host_permissions": [
-    "<all_urls>"
+    "https://api.deepseek.com/*",
+    "https://api.openai.com/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "optional_host_permissions": [
+    "https://*/*",
+    "http://*/*"
   ],
   "background": {
     "service_worker": "background.js",
     "type": "module"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
-    }
-  ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

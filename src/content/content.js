@@ -1,4 +1,9 @@
-// Content script - page content extraction and restriction removal
+// Content script - page content extraction and text selection assist
+(function () {
+if (window.__aiStudyAssistantContentLoaded) {
+  return;
+}
+window.__aiStudyAssistantContentLoaded = true;
 
 // Remove page restrictions
 function removeRestrictions() {
@@ -297,57 +302,6 @@ function extractGenericContent(detectedLang) {
   };
 }
 
-// Auto-select answers on course/assessment pages
-function autoSelectAnswers(questions) {
-  if (!questions || !questions.length) return 0;
-
-  let selected = 0;
-
-  for (const q of questions) {
-    const answer = (q.answer || '').trim();
-    if (!answer || answer === '未知') continue;
-
-    // Find all radio/option groups near this question's content
-    const questionText = (q.content || '').trim().slice(0, 80);
-    if (!questionText) continue;
-
-    // Search all labels containing the question text or nearby
-    const allLabels = document.querySelectorAll('label, [class*="option"], [class*="Option"], [class*="radio"], [class*="Radio"]');
-
-    for (const label of allLabels) {
-      const text = label.textContent?.trim().toLowerCase() || '';
-      // Match: if label contains the question text (partial match)
-      if (questionText.length > 10 && text.includes(questionText.slice(0, 30).toLowerCase())) {
-        // Found the question group, now find the matching answer option
-        const siblings = label.parentElement?.querySelectorAll('label, [class*="option"], [class*="radio"]') || [];
-        for (const sibling of siblings) {
-          const optText = sibling.textContent?.trim() || '';
-          // Match answer: "A" or "A. 1分" or "A、1分" or "A 1分"
-          const answerLetter = answer.charAt(0).toUpperCase();
-          if (optText.startsWith(answerLetter + '.') || optText.startsWith(answerLetter + '、') ||
-              optText.startsWith(answerLetter + ' ') || optText === answerLetter) {
-            // Click this option
-            const input = sibling.querySelector('input[type="radio"]') || sibling.querySelector('input[type="checkbox"]');
-            if (input) {
-              input.click();
-              input.checked = true;
-              input.dispatchEvent(new Event('change', { bubbles: true }));
-              selected++;
-            } else {
-              sibling.click();
-              selected++;
-            }
-            break;
-          }
-        }
-        break;
-      }
-    }
-  }
-
-  return selected;
-}
-
 // Listen for messages from popup/sidepanel
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'extract') {
@@ -359,12 +313,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     removeRestrictions();
     sendResponse({ success: true });
   }
-
-  // Auto-select answers on the page
-  if (message.action === 'autoSelect') {
-    const count = autoSelectAnswers(message.questions);
-    sendResponse({ success: true, count });
-  }
 });
 
 // Check settings on load and auto-remove restrictions if enabled
@@ -375,10 +323,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         resolve(result.settings || {});
       });
     });
-    if (settings.restrictionsRemoval !== false) {
+    if (settings.restrictionsRemoval === true) {
       removeRestrictions();
     }
   } catch {
     // Ignore storage errors
   }
+})();
 })();
