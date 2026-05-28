@@ -4,7 +4,7 @@
       <div class="popup-brand">
         <span class="brand-icon">📖</span>
         <div>
-          <h1>AI 学习助手</h1>
+          <h1>AI 解题伴学</h1>
           <span class="version">v1.0</span>
         </div>
       </div>

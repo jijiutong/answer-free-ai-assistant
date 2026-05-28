@@ -1,7 +1,7 @@
 {
   "name": "ai-study-assistant",
   "version": "1.0.0",
-  "description": "AI 学习助手 - Chrome 浏览器学习内容解析与复盘插件",
+  "description": "AI 解题伴学 - Chrome 浏览器题目解析、讲解与复盘插件",
   "type": "module",
   "scripts": {
     "dev": "vite build --watch --mode development",

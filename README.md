@@ -1,6 +1,6 @@
-# AI Study Assistant
+# AI Problem Study Companion
 
-> A Chrome/Edge browser extension for AI-assisted learning: extract webpage study content, analyze it with AI, review explanations, and export notes.
+> A Chrome/Edge browser extension for problem-focused learning: extract webpage questions and study content, analyze them with AI, review explanations, and export notes.
 
 [简体中文](README.zh-CN.md) · [English](README.md)
 
@@ -35,7 +35,7 @@ npm run build
 
 ### Step 5: Pin the Extension
 1. Click the puzzle piece icon (🧩) in your Chrome toolbar
-2. Find **AI Study Assistant** and click the pin icon (📌)
+2. Find **AI Problem Study Companion** and click the pin icon (📌)
 3. The extension is now always accessible from your toolbar!
 
 ### Step 6: Configure Your AI Model

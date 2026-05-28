@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="AI problem study companion icon">
+  <defs>
+    <linearGradient id="bg" x1="92" y1="48" x2="420" y2="464" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2458f2"/>
+      <stop offset="0.56" stop-color="#5b45e9"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="page" x1="155" y1="143" x2="357" y2="376" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e9efff"/>
+    </linearGradient>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#172554" flood-opacity="0.24"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <path d="M68 166c38-57 104-91 177-91 101 0 185 67 211 158 13 46 7 96-18 137-41 68-119 105-199 94-83-11-151-64-183-142-21-52-17-108 12-156Z" fill="#ffffff" opacity="0.09"/>
+
+  <g filter="url(#soft-shadow)">
+    <path d="M133 158c0-16 13-29 29-29h77c17 0 32 6 44 17l11 10v216l-12-10c-12-10-27-16-43-16h-106V158Z" fill="url(#page)"/>
+    <path d="M379 158c0-16-13-29-29-29h-77c-17 0-32 6-44 17l-11 10v216l12-10c12-10 27-16 43-16h106V158Z" fill="#f8fbff"/>
+    <path d="M250 156h12v219h-12V156Z" fill="#c7d2fe"/>
+    <path d="M166 203h62" stroke="#6d7df5" stroke-width="13" stroke-linecap="round"/>
+    <path d="M166 250h62" stroke="#6d7df5" stroke-width="13" stroke-linecap="round"/>
+    <path d="M166 297h47" stroke="#6d7df5" stroke-width="13" stroke-linecap="round"/>
+    <path d="M286 203h60" stroke="#6d7df5" stroke-width="13" stroke-linecap="round"/>
+    <path d="M286 250h42" stroke="#6d7df5" stroke-width="13" stroke-linecap="round"/>
+  </g>
+
+  <circle cx="340" cy="312" r="62" fill="#15b8a6"/>
+  <path d="M310 311l22 22 41-49" fill="none" stroke="#ffffff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M315 77l12 27 27 12-27 12-12 27-12-27-27-12 27-12 12-27Z" fill="#ffffff"/>
+  <path d="M381 92l7 16 16 7-16 7-7 16-7-16-16-7 16-7 7-16Z" fill="#bff7ee"/>
+</svg>

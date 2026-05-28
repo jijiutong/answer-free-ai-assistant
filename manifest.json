@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "AI 学习助手",
+  "name": "AI 解题伴学",
   "version": "1.0.0",
-  "description": "网页学习内容提取、AI 辅助解析与学习记录导出复盘",
+  "description": "网页题目与学习内容提取、AI 解析讲解、学习记录导出复盘",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
